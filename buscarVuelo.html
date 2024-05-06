@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>JJR Airlines</title>
+</head>
+
+<body class="bodyVuelos">
+
+    <!-- Inicia Nav -->
+    <div class="containerNav">
+        <div class="card cardNav">
+            <div class="card-body elementos">
+                <img src="/img/logo_blue_jjr1.png" alt="Imagen no encontrada">
+                <div class="divLbl">
+                    <label class="lblNav" style="color: #099FBA;">Vuelos</label>
+                    <a href="./reservas.html" style="color: black;"><label class="lblNav">Mis reservas</label></a>
+                    <a href="./acercaDe.html" style="color: black;"><label class="lblNav">Acerca de nosotros</label></a>
+                </div>
+                <div class="divBtn">
+                    <button style="display: none;" class="btnInicSes" onclick="buscar()">Iniciar sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin Nav -->
+
+    <div class="container d-flex contComponents">
+        <div class="container containerInfo">
+
+            <div class="divOriDes">
+                <label class="lblVuelosTlt">Origen</label>
+                <div id="origen" data-value="0" class="modal-open" onclick="abrirModalOrigen()">
+                    <div class="card cardOriDes">
+                        <div class="card-body">
+                            <label class="lblCiudad" id="ciudadOrigen">___________</label><br>
+                            <label class="lblPais" id="paisOrigen">_______</label>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="component">
+                <label class="lblVuelos">Aeropuerto de salida</label>
+                <div class="card cardComponent">
+                    <div class="card-body ">
+                        <label class="lbl2" id="lblAeroOrigen">________</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container containerInfo">
+
+            <div class="divOriDes">
+                <label class="lblVuelosTlt">Destino</label>
+                <div id="destino" data-value="0" class="modal-open" onclick="abrirModalDestino()">
+                    <div class="card cardOriDes">
+                        <div class="card-body">
+                            <label class="lblCiudad" id="ciudadDestino">___________</label><br>
+                            <label class="lblPais" id="paisDestino">_______</label>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="component">
+                <label class="lblVuelos">Aeropuerto de llegada</label>
+                <div class="card cardComponent">
+                    <div class="card-body ">
+                        <label class="lbl2" id="lblAeroDestino">________</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container contComponents">
+        <div class="component" style="text-align: center;">
+            <label class="lblVuelos">Fecha de salida</label>
+            <div class="card cardComponent">
+                <div class="card-body d-flex">
+                    
+                    <i class="fa-regular fa-calendar icon"></i>
+                    <input type="date" class="form-control" id="inputDate">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divBtnVuelos">
+        <button class="btn btnBuscarVuelos" onclick="buscarVuelos()">Buscar Vuelos</button>
+    </div>
+
+
+
+<!-- Estructura del modal Origen -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <label onclick="cerrarNavOrigen()" class="modal-close" style="color: black; margin-right: 10px; cursor: pointer;">X</label>
+    <br><br>
+    <div style="text-align: center; font-size: 34px; font-weight: 500;">
+        <label>¿Desde dónde viajas?</label>
+    </div>
+    <div class="divOptions">
+        <label style="color:#099FBA; font-weight: 600; font-size: 24px;">País</label><br>
+        <select id="selectOrigen" class="selectModal">
+            
+        </select>
+    </div>
+
+    <div class="divOptions">
+        <label style="color:#099FBA; font-weight: 600; font-size: 24px;">Ciudad</label><br>
+        <label class="selectModal" id="lblCiudadOrigen" style="text-align: justify;"></label>
+    </div>
+
+    <div style="margin: 30px auto;">
+        <button class="btnModal" onclick="aplicarOrigen()">Aplicar</button>
+    </div>
+    
+  </div>
+</div>
+
+<!-- Estructura del modal Destino -->
+<div id="modal2" class="modal">
+    <div class="modal-content">
+      <label onclick="cerrarNavDestino()"  class="modal-close" style="color: black; margin-right: 10px; cursor: pointer;">X</label>
+      <br><br>
+      <div style="text-align: center; font-size: 34px; font-weight: 500;">
+          <label>¿A dónde viajas?</label>
+      </div>
+      <div class="divOptions">
+          <label style="color:#099FBA; font-weight: 600; font-size: 24px;">País</label><br>
+          <select id="selectDestino" class="selectModal">
+              
+          </select>
+      </div>
+  
+      <div class="divOptions">
+          <label style="color:#099FBA; font-weight: 600; font-size: 24px;">Ciudad</label><br>
+          <label class="selectModal" id="labelDestino"></label>
+      </div>
+  
+      <div style="margin: 30px auto;">
+          <button class="btnModal" onclick="aplicarDestino()">Aplicar</button>
+      </div>
+      
+    </div>
+  </div>
+
+</body>
+<script src="./js/vuelos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</html>
